@@ -23,49 +23,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box}
+    *,*::before,*::after{box-sizing:border-box}
     :root{color-scheme:light;--wine:#8a1e3d;--pink:#f63b79;--ink:#2a0f12;--muted:#8b646b;--line:rgba(42,15,24,.1)}
     html{scroll-behavior:smooth;scroll-padding-top:18px;-webkit-text-size-adjust:100%}
-    body{min-width:320px;min-height:100vh;margin:0;overflow-x:hidden;background:radial-gradient(ellipse at 15% 0%,rgba(254,219,225,.55),transparent 48%),linear-gradient(180deg,#fff,#fcf8f9);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
-    button,a{-webkit-tap-highlight-color:transparent}
-    a:focus-visible,button:focus-visible{outline:3px solid #f63b79;outline-offset:3px}
-    .wrap{width:min(1100px,calc(100% - 40px));margin:auto;padding:20px 0 max(36px,env(safe-area-inset-bottom));display:grid;gap:24px}
-    .navbar{display:flex;align-items:center;justify-content:space-between;min-height:54px}
-    .brand{display:flex;align-items:center;gap:12px;font:700 26px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.7px}
-    .brand span{color:var(--wine)}
-    .logo{width:52px;height:52px;border-radius:16px;object-fit:cover;box-shadow:0 6px 18px rgba(138,30,61,.2)}
-    .menu-button,.close-button{display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);font-size:19px;cursor:pointer;touch-action:manipulation}
-    .card{position:relative;overflow:hidden;padding:clamp(24px,5vw,38px);border:1px solid #fff;border-radius:26px;background:rgba(255,255,255,.92);box-shadow:0 8px 32px -12px rgba(42,15,20,.12);backdrop-filter:blur(14px)}
-    .card:before,.download-frame:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--wine),var(--pink),var(--wine))}
-    .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--wine);font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
-    .eyebrow:before{content:"";width:24px;height:2px;background:var(--wine)}
-    h1,h2{font-family:'Space Grotesk',sans-serif}
-    h1{max-width:720px;margin:0 0 12px;font-size:clamp(42px,8vw,80px);line-height:1.04;letter-spacing:-2px}
-    h1 span{color:var(--wine)}
+    body{min-width:320px;min-height:100vh;margin:0;padding:0 0 calc(94px + env(safe-area-inset-bottom));overflow-x:hidden;background:radial-gradient(ellipse at 15% 0%,rgba(254,219,225,.55),transparent 48%),linear-gradient(180deg,#fff,#fcf8f9);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+    img{max-width:100%}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+    .wrap{width:min(1100px,calc(100% - 40px));margin-inline:auto;padding:20px 0 24px;display:grid;gap:24px}
+    .navbar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:54px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;font:700 26px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.7px}.brand span{color:var(--wine)}
+    .logo{display:block;flex:none;width:52px;height:52px;border-radius:16px;object-fit:cover;box-shadow:0 6px 18px rgba(138,30,61,.2)}
+    .menu-button,.close-button{display:grid;place-items:center;flex:none;width:48px;height:48px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);font-size:19px;cursor:pointer;touch-action:manipulation}
+    .card{position:relative;min-width:0;overflow:hidden;padding:clamp(24px,5vw,38px);border:1px solid #fff;border-radius:26px;background:rgba(255,255,255,.92);box-shadow:0 8px 32px -12px rgba(42,15,20,.12);backdrop-filter:blur(14px)}
+    .card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--wine),var(--pink),var(--wine))}
+    .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--wine);font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase}.eyebrow:before{content:"";width:24px;height:2px;flex:none;background:var(--wine)}
+    h1,h2{font-family:'Space Grotesk',sans-serif}h1{max-width:100%;margin:0 0 12px;font-size:clamp(42px,8vw,80px);line-height:1.04;letter-spacing:-2px;overflow-wrap:anywhere}h1 span{color:var(--wine)}
     .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:30px}
-    .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;min-width:230px;padding:16px 26px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--wine),#a82e65);color:#fff;font:700 16px 'Plus Jakarta Sans',sans-serif;text-align:center;text-decoration:none;box-shadow:0 10px 26px -8px rgba(138,30,61,.38);transition:transform .2s,box-shadow .2s;touch-action:manipulation}
-    .button:hover{transform:translateY(-2px);box-shadow:0 15px 32px -8px rgba(138,30,61,.42)}
-    .button.secondary{border:1px solid var(--line);background:#fff;color:var(--ink);box-shadow:0 4px 16px -6px rgba(42,15,20,.1)}
-    .button.secondary i{color:var(--wine)}
-    .section-title{display:flex;align-items:center;gap:14px;margin:0 0 22px;font-size:30px;letter-spacing:-.8px}
-    .section-title:after{content:"";height:2px;flex:1;background:linear-gradient(90deg,var(--wine),#fa6086,transparent);opacity:.45}
-    .games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-    .game{display:flex;align-items:center;gap:12px;min-width:0;padding:16px 14px;border:1px solid var(--line);border-radius:18px;background:#f8fafc;transition:transform .2s,border-color .2s}
-    .game:hover{transform:translateY(-2px);border-color:var(--wine);background:#fff}
-    .game-icon{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--wine),#a82e65);color:#fff;font-size:18px}
-    .game-name{font-weight:800;font-size:14px}.game-label{margin-top:4px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
-    .download{display:flex;justify-content:center;scroll-margin-top:18px}
-    .download-frame{position:relative;width:min(560px,100%);padding:24px;border:1px solid #fff;border-radius:24px;background:rgba(255,255,255,.92);box-shadow:0 8px 32px -12px rgba(42,15,20,.12)}
-    .download-frame .button{width:100%;text-transform:uppercase;letter-spacing:1px}
-    footer{text-align:center;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
-    .overlay{position:fixed;inset:0;z-index:5;background:rgba(42,15,21,.42);opacity:0;pointer-events:none;transition:opacity .2s}
-    .overlay.open{opacity:1;pointer-events:auto}
-    .drawer{position:fixed;top:0;right:0;z-index:6;width:min(320px,86vw);height:100%;padding:max(24px,env(safe-area-inset-top)) 24px 24px;background:#fff;box-shadow:-20px 0 60px rgba(42,15,21,.15);transform:translateX(110%);transition:transform .25s}
-    .drawer.open{transform:translateX(0)}.close-button{margin-bottom:24px;color:var(--wine)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;min-width:min(230px,100%);max-width:100%;padding:16px 26px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--wine),#a82e65);color:#fff;font:700 16px/1.3 'Plus Jakarta Sans',sans-serif;text-align:center;text-decoration:none;overflow-wrap:anywhere;box-shadow:0 10px 26px -8px rgba(138,30,61,.38);transition:transform .2s,box-shadow .2s;touch-action:manipulation}.button i{flex:none}.button:hover{transform:translateY(-2px);box-shadow:0 15px 32px -8px rgba(138,30,61,.42)}
+    .section-title{display:flex;align-items:center;gap:14px;margin:0 0 22px;font-size:30px;letter-spacing:-.8px}.section-title:after{content:"";height:2px;flex:1;min-width:12px;background:linear-gradient(90deg,var(--wine),#fa6086,transparent);opacity:.45}
+    .games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.game{display:flex;align-items:center;gap:12px;min-width:0;padding:16px 14px;border:1px solid var(--line);border-radius:18px;background:#f8fafc;transition:transform .2s,border-color .2s}.game:hover{transform:translateY(-2px);border-color:var(--wine);background:#fff}
+    .game-icon{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--wine),#a82e65);color:#fff;font-size:18px}.game-name,.game-label{overflow-wrap:anywhere}.game-name{font-weight:800;font-size:14px}.game-label{margin-top:4px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+    footer{text-align:center;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;overflow-wrap:anywhere}
+    .overlay{position:fixed;inset:0;z-index:5;background:rgba(42,15,21,.42);opacity:0;pointer-events:none;transition:opacity .2s}.overlay.open{opacity:1;pointer-events:auto}
+    .drawer{position:fixed;top:0;right:0;z-index:6;width:min(320px,86vw);height:100vh;height:100dvh;padding:max(24px,env(safe-area-inset-top)) 24px 24px;background:#fff;box-shadow:-20px 0 60px rgba(42,15,21,.15);transform:translateX(110%);transition:transform .25s}.drawer.open{transform:translateX(0)}.close-button{margin-bottom:24px;color:var(--wine)}
     .drawer nav{display:grid}.drawer a{padding:16px 10px;border-bottom:1px solid var(--line);color:var(--ink);font-weight:700;text-decoration:none}.drawer a i{width:26px;color:var(--wine)}
-    @media(max-width:700px){.wrap{width:calc(100% - 32px);gap:18px;padding-top:14px}.brand{font-size:23px}.logo{width:46px;height:46px;border-radius:14px}.card{padding:26px 22px;border-radius:22px}.games{grid-template-columns:repeat(2,minmax(0,1fr))}.section-title{font-size:26px}.actions{gap:12px;margin-top:24px}.button{min-width:0;flex:1;padding:16px 18px;font-size:15px}}
-    @media(max-width:420px){.wrap{width:calc(100% - 24px);gap:15px}.hero{padding:26px 18px}h1{font-size:38px;letter-spacing:-1.5px}.actions{flex-direction:column}.button{width:100%;min-height:54px;flex:none}.game{gap:9px;padding:12px 9px}.game-icon{width:38px;height:38px;border-radius:12px;font-size:15px}.game-name{font-size:13px}.game-label{font-size:9px;letter-spacing:.3px}.download-frame{padding:18px 14px}}
-    @media(max-width:350px){.brand{font-size:20px}.card{padding:22px 16px}.game{align-items:flex-start;flex-direction:column}.game-label{font-size:8px}}
+    .sticky-download{position:fixed;right:0;bottom:0;left:0;z-index:4;display:flex;justify-content:center;width:100%;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid rgba(42,15,24,.08);background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.sticky-download .button{width:min(560px,100%);min-width:0;min-height:54px;margin:0;text-transform:uppercase;letter-spacing:1px}
+    @media(max-width:700px){.wrap{width:calc(100% - 32px);gap:18px;padding-top:14px}.brand{font-size:23px}.logo{width:46px;height:46px;border-radius:14px}.card{padding:26px 22px;border-radius:22px}.games{grid-template-columns:repeat(2,minmax(0,1fr))}.section-title{font-size:26px}.actions{margin-top:24px}}
+    @media(max-width:420px){.wrap{width:calc(100% - 24px);gap:15px}.hero{padding:26px 18px}h1{font-size:clamp(34px,10vw,38px);letter-spacing:-1.5px}.actions{flex-direction:column}.actions .button{width:100%;min-width:0;min-height:54px;flex:none}.game{gap:9px;padding:12px 9px}.game-icon{width:38px;height:38px;border-radius:12px;font-size:15px}.game-name{font-size:13px}.game-label{font-size:9px;letter-spacing:.3px}.sticky-download{padding-right:12px;padding-left:12px}.sticky-download .button{font-size:15px}}
+    @media(max-width:350px){.brand{font-size:20px;gap:9px}.logo{width:42px;height:42px}.card{padding:22px 16px}.game{align-items:flex-start;flex-direction:column}.game-label{font-size:8px}.sticky-download .button{font-size:14px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
@@ -73,32 +57,22 @@
   <div class="overlay" id="overlay"></div>
   <aside class="drawer" id="drawer" aria-label="Main menu" aria-hidden="true">
     <button class="close-button" id="closeMenu" aria-label="Close menu"><i class="fas fa-times" aria-hidden="true"></i></button>
-    <nav><a href="#top"><i class="fas fa-house" aria-hidden="true"></i>Home</a><a href="#games"><i class="fas fa-table" aria-hidden="true"></i>Games</a><a href="#download"><i class="fas fa-download" aria-hidden="true"></i>Download</a></nav>
+    <nav><a href="#top"><i class="fas fa-house" aria-hidden="true"></i>Home</a><a href="#games"><i class="fas fa-table" aria-hidden="true"></i>Games</a><a href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download</a></nav>
   </aside>
   <main class="wrap" id="top">
     <header class="navbar">
       <div class="brand"><img class="logo" src="https://574a81a0-e9bd-4d73-9f02-3df87e218631.lovableproject.com/__l5e/assets-v1/0919920d-72ad-4eb1-8145-6366a1d12180/desi-mtk-logo.png" alt="DMT App logo"><div>DMT <span>App</span></div></div>
       <button class="menu-button" id="openMenu" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
     </header>
-    <section class="card hero">
-      <div class="eyebrow">Premium Play</div>
-      <h1>DMT <span>App</span></h1>
-      <div class="actions">
-        <a class="button" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download APK</a>
-        <a class="button secondary" href="#games"><i class="fas fa-gem" aria-hidden="true"></i>Explore Games</a>
-      </div>
-    </section>
-    <section class="card" id="games">
-      <h2 class="section-title">Games</h2>
-      <div class="games">
-        <article class="game"><div class="game-icon"><i class="fas fa-dice-one" aria-hidden="true"></i></div><div><div class="game-name">Haruf</div><div class="game-label">Ander Haruf</div></div></article>
-        <article class="game"><div class="game-icon"><i class="fas fa-link" aria-hidden="true"></i></div><div><div class="game-name">Haruf</div><div class="game-label">Bahar Haruf</div></div></article>
-        <article class="game"><div class="game-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div><div><div class="game-name">Joodi Digit</div><div class="game-label">Jodi title</div></div></article>
-      </div>
-    </section>
-    <section class="download" id="download"><div class="download-frame"><a class="button" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download Now</a></div></section>
+    <section class="card hero"><div class="eyebrow">Premium Play</div><h1>DMT <span>App</span></h1><div class="actions"><a class="button" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download APK</a></div></section>
+    <section class="card" id="games"><h2 class="section-title">Games</h2><div class="games">
+      <article class="game"><div class="game-icon"><i class="fas fa-dice-one" aria-hidden="true"></i></div><div><div class="game-name">Haruf</div><div class="game-label">Ander Haruf</div></div></article>
+      <article class="game"><div class="game-icon"><i class="fas fa-link" aria-hidden="true"></i></div><div><div class="game-name">Haruf</div><div class="game-label">Bahar Haruf</div></div></article>
+      <article class="game"><div class="game-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div><div><div class="game-name">Joodi Digit</div><div class="game-label">Jodi title</div></div></article>
+    </div></section>
     <footer>DMT App · Entertainment Platform</footer>
   </main>
+  <div class="sticky-download"><a class="button" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download Now</a></div>
   <script>
     const drawer=document.getElementById('drawer');
     const overlay=document.getElementById('overlay');
