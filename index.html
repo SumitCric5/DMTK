@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#8a1e3d">
   <meta name="description" content="Discover DMT App games and download the app.">
   <title>DMT App · Entertainment</title>
-  <!-- Meta Pixel: PageView fires on page load. -->
+  <!-- Standard Meta Pixel: PageView only. -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -84,7 +84,7 @@
       <div class="eyebrow">Premium Play</div>
       <h1>DMT <span>App</span></h1>
       <div class="actions">
-        <a class="button apk-download" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download APK</a>
+        <a class="button" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download APK</a>
         <a class="button secondary" href="#games"><i class="fas fa-gem" aria-hidden="true"></i>Explore Games</a>
       </div>
     </section>
@@ -96,7 +96,7 @@
         <article class="game"><div class="game-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div><div><div class="game-name">Joodi Digit</div><div class="game-label">Jodi title</div></div></article>
       </div>
     </section>
-    <section class="download" id="download"><div class="download-frame"><a class="button apk-download" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download Now</a></div></section>
+    <section class="download" id="download"><div class="download-frame"><a class="button" href="https://dsmt-app.vercel.app/app.apk" download="DMT-App.apk"><i class="fas fa-download" aria-hidden="true"></i>Download Now</a></div></section>
     <footer>DMT App · Entertainment Platform</footer>
   </main>
   <script>
@@ -109,15 +109,6 @@
     overlay.addEventListener('click',closeMenu);
     drawer.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
     document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
-
-    // Track each user-initiated APK download click in Meta Events Manager.
-    document.querySelectorAll('.apk-download').forEach(link=>link.addEventListener('click',()=>{
-      if(typeof window.fbq==='function'){
-        const eventID='apk_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
-        window.fbq('trackCustom','APKDownload',{content_name:'DMT App APK',content_category:'App'},{eventID});
-      }
-      // Leave the native link action intact so mobile browsers can download the APK.
-    }));
   </script>
 </body>
 </html>
